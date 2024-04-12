@@ -35,10 +35,10 @@ public class DispositivoService {
 
 
     // PATCH - MODIFICA STATO DEL DISPOSITIVO
-    public Dispositivo findByIdAndUpdateMail(int id, Dispositivo modifiedDipendente){
+    /*public Dispositivo findByIdAndUpdateStato(int id, Dispositivo modifiedDipendente){
         Dispositivo found = this.findById(id);
 
-    }
+    }*/
 
 
 
