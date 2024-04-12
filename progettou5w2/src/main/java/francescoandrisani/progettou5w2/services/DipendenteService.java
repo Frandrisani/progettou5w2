@@ -65,7 +65,7 @@ public class DipendenteService {
         Dipendente found = this.findById(id);
         String url = (String) cloudinary.uploader().upload(image.getBytes(), ObjectUtils.emptyMap()).get("url");
         found.setAvatar(url);
-        return found;
+        return dipendenteDAO.save(found);
     }
 
 
