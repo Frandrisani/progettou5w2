@@ -1,6 +1,7 @@
 package francescoandrisani.progettou5w2.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,7 @@ public class Dipendente {
     private String email;
     private String avatar;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "dipendente")
     private List<Dispositivo> dispositivi = new ArrayList<>();
 
