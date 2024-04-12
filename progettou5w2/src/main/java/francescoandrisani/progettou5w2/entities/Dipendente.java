@@ -28,10 +28,11 @@ public class Dipendente {
     private List<Dispositivo> dispositivi = new ArrayList<>();
 
     // Costruttore
-    public Dipendente(String username, String nome, String cognome, String email){
+    public Dipendente(String username, String nome, String cognome, String email, String avatar){
         this.username= username;
         this.nome= nome;
         this.cognome=cognome;
         this.email=email;
+        this.avatar=avatar;
     }
 }

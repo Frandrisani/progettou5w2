@@ -28,10 +28,9 @@ public class Dispositivo {
     private Dipendente dipendente;
 
     // Costruttore
-    public Dispositivo(TipoDispositivo tipo, StatoDispositivo stato, Dipendente dipendente){
+    public Dispositivo(TipoDispositivo tipo, StatoDispositivo stato){
         this.tipo= tipo;
         this.stato= stato;
-        this.dipendente=dipendente;
     }
 
 }
