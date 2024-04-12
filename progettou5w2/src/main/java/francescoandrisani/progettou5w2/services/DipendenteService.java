@@ -6,6 +6,7 @@ import francescoandrisani.progettou5w2.entities.Dipendente;
 import francescoandrisani.progettou5w2.exceptions.BadRequestExceptions;
 import francescoandrisani.progettou5w2.exceptions.NotFound;
 import francescoandrisani.progettou5w2.payloads.NewDipendente;
+import francescoandrisani.progettou5w2.payloads.NewEmailDTO;
 import francescoandrisani.progettou5w2.repositories.DipendenteDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,9 +51,9 @@ public class DipendenteService {
     }
 
     // PATCH - MODIFICA EMAIL DEL DIPENDENTE
-    public Dipendente findByIdAndUpdateMail(int id, Dipendente modifiedDipendente){
+    public Dipendente findByIdAndUpdateMail(int id, NewEmailDTO modifiedDipendente){
         Dipendente found = this.findById(id);
-        found.setEmail(modifiedDipendente.getEmail());
+        found.setEmail(modifiedDipendente.email());
         return this.dipendenteDAO.save(found);
     }
 

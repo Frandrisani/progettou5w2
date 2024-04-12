@@ -1,6 +1,10 @@
 package francescoandrisani.progettou5w2.services;
+import francescoandrisani.progettou5w2.entities.Dipendente;
 import francescoandrisani.progettou5w2.entities.Dispositivo;
+import francescoandrisani.progettou5w2.entities.StatoDispositivo;
+import francescoandrisani.progettou5w2.exceptions.BadRequestExceptions;
 import francescoandrisani.progettou5w2.exceptions.NotFound;
+import francescoandrisani.progettou5w2.repositories.DipendenteDAO;
 import francescoandrisani.progettou5w2.repositories.DispositivoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +17,9 @@ public class DispositivoService {
 
     @Autowired
     private DispositivoDAO dispositivoDAO;
+
+    @Autowired
+    private DipendenteService dipendenteService;
 
 
     // GET - LISTA DEI DISPOSITIVI
@@ -34,13 +41,21 @@ public class DispositivoService {
     }
 
 
-    // PATCH - MODIFICA STATO DEL DISPOSITIVO
-    /*public Dispositivo findByIdAndUpdateStato(int id, Dispositivo modifiedDipendente){
-        Dispositivo found = this.findById(id);
+    // PATCH - ASSEGNAZIONE DI UN DISPOSITIVO AD UN DIPENDENTE
+    public Dispositivo assegnaDispositivo(int idDispositivo, int idDipendente) {
+        Dispositivo dispositivo = this.findById(idDispositivo);
+        Dipendente dipendente = dipendenteService.findById(idDipendente);
 
-    }*/
 
+        if (!dispositivo.getStato().equals(StatoDispositivo.DISPONIBILE)) {
+            throw new BadRequestExceptions("Il dispositivo non è disponibile per l'assegnazione");
+        }
 
+        dispositivo.setDipendente(dipendente);
+        dispositivo.setStato(StatoDispositivo.ASSEGNATO);
+
+        return this.dispositivoDAO.save(dispositivo);
+    }
 
 
     // DELETE - ELIMIAZIONE DISPOSITIVO

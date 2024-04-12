@@ -1,12 +1,11 @@
 package francescoandrisani.progettou5w2.controllers;
 
 import francescoandrisani.progettou5w2.entities.Dipendente;
-import francescoandrisani.progettou5w2.entities.Dispositivo;
 import francescoandrisani.progettou5w2.exceptions.BadRequestExceptions;
 import francescoandrisani.progettou5w2.payloads.NewDipendente;
+import francescoandrisani.progettou5w2.payloads.NewEmailDTO;
 import francescoandrisani.progettou5w2.payloads.NewRispDTO;
 import francescoandrisani.progettou5w2.services.DipendenteService;
-import francescoandrisani.progettou5w2.services.DispositivoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -49,12 +48,11 @@ public class DipendenteController {
         return new NewRispDTO(this.dipendenteService.save(body).getId_Dipendente());
     }
 
-
-
-   /* @PutMapping("/{userId}")
-    public User findByIdAndUpdate(@PathVariable UUID userId, @RequestBody User body){
-        return this.usersService.findByIdAndUpdate(userId, body);
-    }*/
+    // MODIFICA DELL'EMAIL
+   @PatchMapping("/{dipendenteId}")
+    public Dipendente findByIdAndUpdateEmail (@PathVariable int userId, @RequestBody NewEmailDTO body){
+        return this.dipendenteService.findByIdAndUpdateMail(userId, body);
+    }
 
 
     // CANCELLA DIPENDENTE
@@ -64,6 +62,8 @@ public class DipendenteController {
         this.dipendenteService.findByIdAndDelete(dipendenteId);
     }
 
+
+    // MODIFICA DELL'AVATAR
     @PostMapping("/{id}/upload")
     public Dipendente uploadAvatar(@PathVariable int id,  @RequestParam("avatar")MultipartFile image) throws IOException {
         return this.dipendenteService.updateUrlAvatar(id, image);
