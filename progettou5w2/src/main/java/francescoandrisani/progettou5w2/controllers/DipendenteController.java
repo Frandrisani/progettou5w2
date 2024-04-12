@@ -64,7 +64,7 @@ public class DipendenteController {
 
 
     // MODIFICA DELL'AVATAR
-    @PostMapping("/{id}/upload")
+    @PatchMapping("/{id}/upload")
     public Dipendente uploadAvatar(@PathVariable int id,  @RequestParam("avatar")MultipartFile image) throws IOException {
         return this.dipendenteService.updateUrlAvatar(id, image);
     }
