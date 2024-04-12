@@ -18,7 +18,9 @@ public class Dispositivo {
     @GeneratedValue
     private int id_Dispositivo;
 
+    @Enumerated(EnumType.STRING)
     private TipoDispositivo tipo;
+    @Enumerated(EnumType.STRING)
     private  StatoDispositivo stato;
 
     @ManyToOne
