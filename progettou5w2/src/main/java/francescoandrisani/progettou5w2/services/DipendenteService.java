@@ -1,5 +1,7 @@
 package francescoandrisani.progettou5w2.services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import francescoandrisani.progettou5w2.entities.Dipendente;
 import francescoandrisani.progettou5w2.exceptions.BadRequestExceptions;
 import francescoandrisani.progettou5w2.exceptions.NotFound;
@@ -10,11 +12,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 public class DipendenteService {
 
     @Autowired
     private DipendenteDAO dipendenteDAO;
+
+    @Autowired
+    private Cloudinary cloudinary;
 
 
     // GET - LISTA DEI DIPENDENTI
@@ -49,11 +57,17 @@ public class DipendenteService {
     }
 
 
-    // PATCH - INSERIMENTO AVATAR SCELTO DALL'UTENTE
+    // PATCH - INSERIMENTO AVATAR SCELTO DAL DIPENDENTE
+    public Dipendente updateUrlAvatar(int id, MultipartFile image) throws IOException{
+        Dipendente found = this.findById(id);
+        String url = (String) cloudinary.uploader().upload(image.getBytes(), ObjectUtils.emptyMap()).get("url");
+        found.setAvatar(url);
+        return found;
+    }
 
 
 
-    // DELETE - ELIMIAZIONE UTENTE
+    // DELETE - ELIMIAZIONE DIPENDENTE
     public void findByIdAndDelete(int id){
         Dipendente found = this.findById(id);
         this.dipendenteDAO.delete(found);
