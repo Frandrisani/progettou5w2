@@ -46,12 +46,6 @@ public class DispositivoController {
     }
 
 
-
-   /* @PutMapping("/{userId}")
-    public User findByIdAndUpdate(@PathVariable UUID userId, @RequestBody User body){
-        return this.usersService.findByIdAndUpdate(userId, body);
-    }*/
-
     // CANCELLA DISPOSITIVO
     @DeleteMapping("/{dispositivoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -59,11 +53,5 @@ public class DispositivoController {
         this.dispositivoService.findByIdAndDelete(dispositivoId);
     }
 
-  /*  @PostMapping("/upload")
-    public String uploadAvatar(@RequestParam("avatar") MultipartFile image) throws IOException {
-
-        return this.dispositivoService.(image);
-
-    }*/
 
 }

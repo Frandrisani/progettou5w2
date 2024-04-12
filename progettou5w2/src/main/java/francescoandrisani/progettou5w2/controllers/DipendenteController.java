@@ -49,9 +49,9 @@ public class DipendenteController {
     }
 
     // MODIFICA DELL'EMAIL
-   @PatchMapping("/{dipendenteId}")
-    public Dipendente findByIdAndUpdateEmail (@PathVariable int userId, @RequestBody NewEmailDTO body){
-        return this.dipendenteService.findByIdAndUpdateMail(userId, body);
+   @PatchMapping("/changemail/{dipendenteId}")
+    public Dipendente findByIdAndUpdateEmail (@PathVariable int dipendenteId, @RequestBody NewEmailDTO body){
+        return this.dipendenteService.findByIdAndUpdateMail(dipendenteId, body);
     }
 
 

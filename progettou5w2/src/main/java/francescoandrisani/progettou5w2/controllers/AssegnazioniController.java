@@ -20,7 +20,7 @@ public class AssegnazioniController {
     private DispositivoService dispositivoService;
 
     // PATCH - ASSEGNAZIONE DI UN DISPOSITIVO AD UN UTENTE
-    @PatchMapping("/{idDispositivo}/{idDipendente}")
+    @PatchMapping("/assegnazione/{idDispositivo}/{idDipendente}")
     @ResponseStatus(HttpStatus.OK)
     public Dispositivo assegnaDispositivo(@PathVariable int idDispositivo, @PathVariable int idDipendente) {
         return dispositivoService.assegnaDispositivo(idDispositivo, idDipendente);
