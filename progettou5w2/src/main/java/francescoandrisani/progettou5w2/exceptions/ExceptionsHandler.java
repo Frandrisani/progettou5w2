@@ -34,6 +34,14 @@ public class ExceptionsHandler {
     }
 
 
+    // Errore generato quando non si è autorizzati tramite token
+    @ExceptionHandler(BadRequestExceptions.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ErrorDTO handleUnauthorized(UnauthorizedException ex){
+        return new ErrorDTO(ex.getMessage(), LocalDateTime.now());
+    }
+
+
     // Errore generico
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
